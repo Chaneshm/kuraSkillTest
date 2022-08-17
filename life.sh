@@ -35,20 +35,75 @@
 # 5. Celebrate the user if they successfully graduate Kura Cohort 3
 # 	- record their name in the "winners" file
 
-echo "it seems like I needed to add a non-comment line to commit"
 # Creation of logic for the test
 qRight=0
 userLevel=1
 
+#The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
+
+
+
+
+# Function Name: recordState
+# Description: This function will create a new file and add the users current info on the game to the file.
+# args: N/A
+# Name: Biki Gurung
+recordState(){
+	# Create a User File for each user
+	touch "$file"
+	# Append User Game Information:
+	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$usrDifficulty'","result":"'$userResult'","score":"'$userScore'"}'
+	echo $json_data | cat > "$file"
+}
+
+# Function name: readState
+# Description: This function will read the file if it exists and then set the variables for the user.
+# args: N/A
+# Name: Biki Gurung
+readState(){
+	if [ -f "$file" ]
+	then
+		echo "File is found"
+		echo "$file"
+		userLevel=($(jq -r '.level' $file))
+		usrDifficulty=($(jq -r '.gamemode' $file))
+		userResult=($(jq -r '.result' $file))
+		userScore=($(jq -r '.score' $file))
+
+		echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
+	else
+   		echo "File is not found"
+	fi
+}
+
+echo "Welcome to KuraLabs!"
 echo "What is your name?"
 read userName
+file="${userName,,}.json"
+readState
+echo "Hello $userName ! Id love to chat but its already time for your first diagnostic!"
+echo "Are you ready? y/n"
+read option
+case ${option,,} in
+    y) echo "Get ready."
+    sleep 1s
+    test 
+    ;;
+    n) echo "Maybe next time, keep studying!"
+    sleep 2s
+    exit 0
+    ;;
+esac
+
+# userName="BikiGurung"
+# userLevel=1
+# usrDifficulty="easy"
+# userResult="Pass"
+# userScore=5
 
 
-userName="BikiGurung"
-userLevel=1
-usrDifficulty="easy"
-userResult="Pass"
-userScore=5
+
+
 
 
 echo "What difficulty would you like?"
@@ -111,8 +166,12 @@ pDiff(){
 # ;}
 
 test(){
+    clear
     qNum=1
     # questions
+    echo "Welcome to KuraLabs week $userLevel diagnostic test"
+    echo "I hope you studied!"
+    sleep 2s
     while [[ $qNum -le 3 ]]
     do
         case $qNum in 
@@ -163,9 +222,11 @@ test(){
     if [[ $qRight < $required ]]
     then
         echo "Sorry but you failed this test. Better luck next time"
+        recordState
     else
         echo "Congrats you passed the diagnostic!"
         userLevel=$(( $userLevel + 1 ))
+        recordState
     fi
     qRight=0
     sleep 3s
@@ -175,42 +236,4 @@ echo hello
 pDiff
 test
 
-#The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
-
-
-file="$userName.json"
-
-# Function Name: recordState
-# Description: This function will create a new file and add the users current info on the game to the file.
-# args: N/A
-# Name: Biki Gurung
-recordState(){
-	# Create a User File for each user
-	touch "$file"
-	# Append User Game Information:
-	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$usrDifficulty'","result":"'$userResult'","score":"'$userScore'"}'
-	echo $json_data | cat > "$file"
-}
-
-# Function name: readState
-# Description: This function will read the file if it exists and then set the variables for the user.
-# args: N/A
-# Name: Biki Gurung
-readState(){
-	if [ -f "$file" ]
-	then
-		echo "File is found"
-		echo "$file"
-		userLevel=($(jq -r '.level' $file))
-		usrDifficulty=($(jq -r '.gamemode' $file))
-		userResult=($(jq -r '.result' $file))
-		userScore=($(jq -r '.score' $file))
-
-		echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
-	else
-   		echo "File is not found"
-	fi
-}
-
 recordState
-readState

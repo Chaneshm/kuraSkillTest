@@ -1,10 +1,10 @@
-What command gives your file executable permissions? ????chmod +x
-What command do you use to read users input silently? ????read -s
-What allows you to schedule task automatically? ????Cron Job
-Where in the terminal do you go to add or manage a profile? ????Bashrc 
-What command puts you in the home directory of root? ????sudo su
-What command checks if you have any updates? ????sudo apt update
-If an IP address starts with 10, is it private or public? ????private
-What does a loopback IP address begin with? ????127
-What is your default gateway? ????Router
-What command shows you all of the processes running on your system? ????ps-e
+What command gives your file executable permissions? @@@@chmod +x
+What command do you use to read users input silently? @@@@read -s
+What allows you to schedule task automatically? @@@@Cron Job
+Where in the terminal do you go to add or manage a profile? @@@@Bashrc 
+What command puts you in the home directory of root? @@@@sudo su
+What command checks if you have any updates? @@@@sudo apt update
+If an IP address starts with 10, is it private or public? @@@@private
+What does a loopback IP address begin with? @@@@127
+What is your default gateway? @@@@Router
+What command shows you all of the processes running on your system? @@@@ps-e
