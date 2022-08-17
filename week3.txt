@@ -1,10 +1,10 @@
-What command terminates a process using its name? @@@@pkill
-What command allows you to see all your systems performace? @@@@htop
-What is the name of the version control system that we have started using? @@@@Git
-If you are taking a copy of the repo and creating your own individual repo,are you forking or cloning? @@@@forking 
-Each commit generates a different ____ in the file? @@@@Hash
-Git ___ lets you see the hash of a file within a commit. @@@@log
-Git ___ switches between branches. @@@@switch
-Git ___ updates your working directory based on your local copy/database. @@@@pull
-What command terminates a process using its PID? @@@@Kill
-What is our favorite topic to discuss in class? @@@@Food
+What command terminates a process using its name? @pkill
+What command allows you to see all your systems performace? @htop
+What is the name of the version control system that we have started using? @Git
+If you are taking a copy of the repo and creating your own individual repo,are you forking or cloning? @forking 
+Each commit generates a different ____ in the file? @Hash
+Git ___ lets you see the hash of a file within a commit. @log
+Git ___ switches between branches. @switch
+Git ___ updates your working directory based on your local copy/database. @pull
+What command terminates a process using its PID? @Kill
+What is our favorite topic to discuss in class? @Food
