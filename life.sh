@@ -131,7 +131,41 @@ pDiff
 test
 echo test
 
+#The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
 
+function questions() {
+
+	if [ userLevel -eq 1 ];
+	then shuf -n 3 week1.txt;
+	q1=(cut -d'????' -f1| {print $1;exit});
+	a1=(cut -d'????' -f2| {print $1;exit});
+	q2=(cut -d'????' -f1| {print $2;exit});
+	a2=(cut -d'????' -f2| {print $2;exit});
+	q3=(cut -d'????' -f1| {print $3;exit});
+	a3=(cut -d'????' -f2| {print $3;exit});
+	fi
+
+	if [ userLevel -eq 2 ];
+	then shuf -n 3 week2.txt;
+	q1=(cut -d'????' -f1| {print $1;exit});
+	a1=(cut -d'????' -f2| {print $1;exit});
+	q2=(cut -d'????' -f1| {print $2;exit});
+	a2=(cut -d'????' -f2| {print $2;exit});
+	q3=(cut -d'????' -f1| {print $3;exit});
+	a3=(cut -d'????' -f2| {print $3;exit});
+	fi
+
+	if [ userLevel -eq 3 ];
+	then shuf -n 3 week3.txt;
+	q1=(cut -d'????' -f1| {print $1;exit});
+	a1=(cut -d'????' -f2| {print $1;exit});
+	q2=(cut -d'????' -f1| {print $2;exit});
+	a2=(cut -d'????' -f2| {print $2;exit});
+	q3=(cut -d'????' -f1| {print $3;exit});
+	a3=(cut -d'????' -f2| {print $3;exit});
+	fi
+
+;}
 
 
 userName="BikiGurung"
@@ -177,3 +211,4 @@ readState(){
 
 recordState
 readState
+>>>>>>> a1c2e0d36b760fdf678d28f9aef41894f9c4757d
