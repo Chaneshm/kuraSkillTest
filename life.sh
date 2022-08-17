@@ -36,19 +36,146 @@
 # 	- record their name in the "winners" file
 
 echo "it seems like I needed to add a non-comment line to commit"
-=======
 # Creation of logic for the test
+qRight=0
+userLevel=1
 
-echo test
-
-
+echo "What is your name?"
+read userName
 
 
 userName="BikiGurung"
 userLevel=1
-userGameMode="easy"
+usrDifficulty="easy"
 userResult="Pass"
 userScore=5
+
+
+echo "What difficulty would you like?"
+echo "1. Beginner"
+echo "2. Intermediate"
+echo "3. Expert"
+read usrDifficulty
+
+q1="testq1"
+q2="testq2"
+q3="testq3"
+a1="ans1"
+a2="ans2"
+a3="ans3"
+
+
+pDiff(){
+    case $usrDifficulty in 
+        1) required=1
+        ;;
+        2) required=2
+        ;;
+        3) required=3
+        ;;
+    esac
+}
+
+# function questions() {
+
+# 	if [ $userLevel -eq 1 ];
+# 	then shuf -n 3 week1.txt;
+# 	q1=(cut -d'????' -f1| {print $1;exit});
+# 	a1=(cut -d'????' -f2| {print $1;exit});
+# 	q2=(cut -d'????' -f1| {print $2;exit});
+# 	a2=(cut -d'????' -f2| {print $2;exit});
+# 	q3=(cut -d'????' -f1| {print $3;exit});
+# 	a3=(cut -d'????' -f2| {print $3;exit});
+# 	fi
+
+# 	if [ $userLevel -eq 2 ];
+# 	then shuf -n 3 week2.txt;
+# 	q1=(cut -d'????' -f1| {print $1;exit});
+# 	a1=(cut -d'????' -f2| {print $1;exit});
+# 	q2=(cut -d'????' -f1| {print $2;exit});
+# 	a2=(cut -d'????' -f2| {print $2;exit});
+# 	q3=(cut -d'????' -f1| {print $3;exit});
+# 	a3=(cut -d'????' -f2| {print $3;exit});
+# 	fi
+
+# 	if [ $userLevel -eq 3 ];
+# 	then shuf -n 3 week3.txt;
+# 	q1=(cut -d'????' -f1| {print $1;exit});
+# 	a1=(cut -d'????' -f2| {print $1;exit});
+# 	q2=(cut -d'????' -f1| {print $2;exit});
+# 	a2=(cut -d'????' -f2| {print $2;exit});
+# 	q3=(cut -d'????' -f1| {print $3;exit});
+# 	a3=(cut -d'????' -f2| {print $3;exit});
+# 	fi
+
+# ;}
+
+test(){
+    qNum=1
+    # questions
+    while [[ $qNum -le 3 ]]
+    do
+        case $qNum in 
+            1) echo $q1
+                read ans
+                ans=${ans,,}
+                if [[ $ans == $a1 ]]
+                    then
+                        echo "Correct! Keep it up!"
+                        qRight=$(( $qRight + 1 ))
+                        qNum=$(( $qNum + 1 ))
+                    else   
+                        echo "Sorry but that answer is incorrect"
+                        qNum=$(( $qNum + 1 ))
+                fi
+            ;;
+            2) echo $q2
+                read ans
+                ans=${ans,,}
+                if [[ $ans == $a2 ]]
+                    then
+                        echo "Correct! Keep it up!"
+                        qRight=$(( $qRight + 1 ))
+                        qNum=$(( $qNum + 1 ))
+                    else   
+                        echo "Sorry but that answer is incorrect"
+                        qNum=$(( $qNum + 1 ))
+                fi
+            ;;
+            3) echo $q3
+                read ans
+                ans=${ans,,}
+                if [[ $ans == $a3 ]]
+                    then
+                        echo "Correct! Keep it up!"
+                        qRight=$(( $qRight + 1 ))
+                        qNum=$(( $qNum + 1 ))
+                    else   
+                        echo "Sorry but that answer is incorrect"
+                        qNum=$(( $qNum + 1 ))
+                fi
+            ;;
+        esac
+    done
+    echo "That brings us to the end of this weeks diagnostic"
+    sleep 0.5s
+    echo "You got $qRight questions right."
+    if [[ $qRight < $required ]]
+    then
+        echo "Sorry but you failed this test. Better luck next time"
+    else
+        echo "Congrats you passed the diagnostic!"
+        userLevel=$(( $userLevel + 1 ))
+    fi
+    qRight=0
+    sleep 3s
+}
+echo hello
+
+pDiff
+test
+
+#The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
 
 
 file="$userName.json"
@@ -61,7 +188,7 @@ recordState(){
 	# Create a User File for each user
 	touch "$file"
 	# Append User Game Information:
-	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$userGameMode'","result":"'$userResult'","score":"'$userScore'"}'
+	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$usrDifficulty'","result":"'$userResult'","score":"'$userScore'"}'
 	echo $json_data | cat > "$file"
 }
 
@@ -75,11 +202,11 @@ readState(){
 		echo "File is found"
 		echo "$file"
 		userLevel=($(jq -r '.level' $file))
-		userGameMode=($(jq -r '.gamemode' $file))
+		usrDifficulty=($(jq -r '.gamemode' $file))
 		userResult=($(jq -r '.result' $file))
 		userScore=($(jq -r '.score' $file))
 
-		echo "$userLevel", "$userGameMode", "$userResult", "$userScore"
+		echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
 	else
    		echo "File is not found"
 	fi
