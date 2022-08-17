@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+# Game Structure written by Chanesh Mahadeo
 # -------------------------------------------------------------------------------------------------------------
 # Objective: Run through a 3 week Kura Labs gauntlet
 # Components of application: 
@@ -11,7 +11,7 @@
 # -------------------------------------------------------------------------------------------------------------
 
 # 1. Welcome user to the Kura "life" challenge
-# 2. Prompt user for level of difficulty they wish to play [1=Noob, 2=Experienced, 3=Veteran]
+# 2. Prompt user for level of difficulty they wish to play [1=Beginner, 2=Intermediate, 3=Expert]
 # 	>> if "difficulty = 1"
 #	- User must get 1/3 answers correct to advance to next level [pass=1/3, fail=0/3] at ALL STAGES [week1, week2, week3]
 #	>> if "difficulty = 2"
@@ -40,6 +40,10 @@ qRight=0
 userLevel=1
 usrDifficulty=0
 
+# Function Name: questions
+# Descriptions: The following function will provide 3 unique random questions and their respetive answers from the week1.txt, week2.txt and week3.txt files created by Yariel Aracena>
+# Names: Nicole Navarrete , Randall Da Costa
+
 q1=""
 q2=""
 q3=""
@@ -48,10 +52,6 @@ a2=""
 a3=""
 
 source ./test.sh
-#The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
-
-
-
 
 # Function Name: recordState
 # Description: This function will create a new file and add the users current info on the game to the file.
