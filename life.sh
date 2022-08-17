@@ -35,9 +35,16 @@
 # 5. Celebrate the user if they successfully graduate Kura Cohort 3
 # 	- record their name in the "winners" file
 
-# Creation of logic for the test
+# Default values that must be initialized
 qRight=0
 userLevel=1
+
+q1="testq1"
+q2="testq2"
+q3="testq3"
+a1="ans1"
+a2="ans2"
+a3="ans3"
 
 #The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
 
@@ -63,109 +70,40 @@ recordState(){
 readState(){
 	if [ -f "$file" ]
 	then
-		echo "File is found"
-		echo "$file"
-		userLevel=($(jq -r '.level' $file))
-		usrDifficulty=($(jq -r '.gamemode' $file))
-		userResult=($(jq -r '.result' $file))
-		userScore=($(jq -r '.score' $file))
+        clear
+        if [[ $(jq -r '.level' $file) > 3 ]]
+        then
+            echo "Welcome back alumni"
+            echo "Would you like to retake Kura? y/n"
+            read option
+            case ${option,,} in
+                y) echo "Have fun!."
+                sleep 1s
+                userLevel=1
+                ;;
+                n) echo "Maybe next time, keep studying!"
+                sleep 2s
+                recordState
+                exit 0
+                ;;
+            esac
+        else
+            echo "Nice to see you again $userName"
+            # echo "$file"
+            userLevel=($(jq -r '.level' $file))
+            usrDifficulty=($(jq -r '.gamemode' $file))
+            userResult=($(jq -r '.result' $file))
+            userScore=($(jq -r '.score' $file))
+        fi
 
-		echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
+		# echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
 	else
-   		echo "File is not found"
+        clear
+   		echo "You seem new here!"
 	fi
 }
-
-echo "Welcome to KuraLabs!"
-echo "What is your name?"
-read userName
-file="${userName,,}.json"
-readState
-echo "Hello $userName ! Id love to chat but its already time for your first diagnostic!"
-echo "Are you ready? y/n"
-read option
-case ${option,,} in
-    y) echo "Get ready."
-    sleep 1s
-    test 
-    ;;
-    n) echo "Maybe next time, keep studying!"
-    sleep 2s
-    exit 0
-    ;;
-esac
-
-# userName="BikiGurung"
-# userLevel=1
-# usrDifficulty="easy"
-# userResult="Pass"
-# userScore=5
-
-
-
-
-
-
-echo "What difficulty would you like?"
-echo "1. Beginner"
-echo "2. Intermediate"
-echo "3. Expert"
-read usrDifficulty
-
-q1="testq1"
-q2="testq2"
-q3="testq3"
-a1="ans1"
-a2="ans2"
-a3="ans3"
-
-
-pDiff(){
-    case $usrDifficulty in 
-        1) required=1
-        ;;
-        2) required=2
-        ;;
-        3) required=3
-        ;;
-    esac
-}
-
-# function questions() {
-
-# 	if [ $userLevel -eq 1 ];
-# 	then shuf -n 3 week1.txt;
-# 	q1=(cut -d'????' -f1| {print $1;exit});
-# 	a1=(cut -d'????' -f2| {print $1;exit});
-# 	q2=(cut -d'????' -f1| {print $2;exit});
-# 	a2=(cut -d'????' -f2| {print $2;exit});
-# 	q3=(cut -d'????' -f1| {print $3;exit});
-# 	a3=(cut -d'????' -f2| {print $3;exit});
-# 	fi
-
-# 	if [ $userLevel -eq 2 ];
-# 	then shuf -n 3 week2.txt;
-# 	q1=(cut -d'????' -f1| {print $1;exit});
-# 	a1=(cut -d'????' -f2| {print $1;exit});
-# 	q2=(cut -d'????' -f1| {print $2;exit});
-# 	a2=(cut -d'????' -f2| {print $2;exit});
-# 	q3=(cut -d'????' -f1| {print $3;exit});
-# 	a3=(cut -d'????' -f2| {print $3;exit});
-# 	fi
-
-# 	if [ $userLevel -eq 3 ];
-# 	then shuf -n 3 week3.txt;
-# 	q1=(cut -d'????' -f1| {print $1;exit});
-# 	a1=(cut -d'????' -f2| {print $1;exit});
-# 	q2=(cut -d'????' -f1| {print $2;exit});
-# 	a2=(cut -d'????' -f2| {print $2;exit});
-# 	q3=(cut -d'????' -f1| {print $3;exit});
-# 	a3=(cut -d'????' -f2| {print $3;exit});
-# 	fi
-
-# ;}
-
 test(){
+    
     clear
     qNum=1
     # questions
@@ -227,13 +165,72 @@ test(){
         echo "Congrats you passed the diagnostic!"
         userLevel=$(( $userLevel + 1 ))
         recordState
+        if [[ $userLevel < 3 ]]
+        then
+        menu
+        else
+            echo "Congratulation on graduating KuraLabs. We hope you stay in touch."
+        fi
     fi
     qRight=0
     sleep 3s
 }
-echo hello
+menu(){
+    echo "Welcome to week $userLevel of KuraLabs"
+    echo "We hope you are enjoying the bootcamp so far"
+    echo "That being said, are you ready for this weeks diagnostic? y/n"
+    read option
+    case ${option,,} in
+        y) echo "Get ready."
+        sleep 1s
+        test 
+        ;;
+        n) echo "Maybe next time, keep studying!"
+        sleep 2s
+        recordState
+        exit 0
+        ;;
+    esac
+}
 
+echo "Welcome to KuraLabs!"
+echo "What is your name?"
+read userName
+file="${userName,,}.json"
+readState
+menu;
+
+# userName="BikiGurung"
+# userLevel=1
+# usrDifficulty="easy"
+# userResult="Pass"
+# userScore=5
+
+
+
+
+
+
+echo "What difficulty would you like?"
+echo "1. Beginner"
+echo "2. Intermediate"
+echo "3. Expert"
+read usrDifficulty
+
+
+
+
+pDiff(){
+    case $usrDifficulty in 
+        1) required=1
+        ;;
+        2) required=2
+        ;;
+        3) required=3
+        ;;
+    esac
+}
 pDiff
-test
+
 
 recordState
