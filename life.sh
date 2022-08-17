@@ -38,13 +38,14 @@
 # Default values that must be initialized
 qRight=0
 userLevel=1
+usrDifficulty=0
 
-q1="testq1"
-q2="testq2"
-q3="testq3"
-a1="ans1"
-a2="ans2"
-a3="ans3"
+q1=""
+q2=""
+q3=""
+a1=""
+a2=""
+a3=""
 
 #The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
 
@@ -80,6 +81,8 @@ readState(){
                 y) echo "Have fun!."
                 sleep 1s
                 userLevel=1
+                usrDifficulty=0
+                recordState
                 ;;
                 n) echo "Maybe next time, keep studying!"
                 sleep 2s
@@ -102,8 +105,30 @@ readState(){
    		echo "You seem new here!"
 	fi
 }
+getDiff(){
+echo "What difficulty would you like?"
+echo "1. Beginner"
+echo "2. Intermediate"
+echo "3. Expert"
+read usrDifficulty
+}
+pDiff(){
+    case $usrDifficulty in 
+        1) required=1
+        ;;
+        2) required=2
+        ;;
+        3) required=3
+        ;;
+    esac
+}
 test(){
-    
+    if [[ $usrDifficulty -eq 0 ]]
+    then
+        getDiff
+        pDiff
+    fi
+    pDiff
     clear
     qNum=1
     # questions
@@ -160,16 +185,21 @@ test(){
     if [[ $qRight < $required ]]
     then
         echo "Sorry but you failed this test. Better luck next time"
+        qRight=0
         recordState
+        menu
     else
         echo "Congrats you passed the diagnostic!"
+        qRight=0
         userLevel=$(( $userLevel + 1 ))
         recordState
-        if [[ $userLevel < 3 ]]
+        if [[ $userLevel -le 3 ]]
         then
         menu
         else
-            echo "Congratulation on graduating KuraLabs. We hope you stay in touch."
+            echo "Congratulations on graduating KuraLabs. We hope you stay in touch."
+            echo "Goodbye!"
+            sleep 1s
         fi
     fi
     qRight=0
@@ -198,39 +228,5 @@ echo "What is your name?"
 read userName
 file="${userName,,}.json"
 readState
-menu;
-
-# userName="BikiGurung"
-# userLevel=1
-# usrDifficulty="easy"
-# userResult="Pass"
-# userScore=5
-
-
-
-
-
-
-echo "What difficulty would you like?"
-echo "1. Beginner"
-echo "2. Intermediate"
-echo "3. Expert"
-read usrDifficulty
-
-
-
-
-pDiff(){
-    case $usrDifficulty in 
-        1) required=1
-        ;;
-        2) required=2
-        ;;
-        3) required=3
-        ;;
-    esac
-}
-pDiff
-
-
+menu
 recordState
