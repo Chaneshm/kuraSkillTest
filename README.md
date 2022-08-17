@@ -12,7 +12,8 @@
 #	Run through a 3 week Kura Labs gauntlet if you dare!
 # ---------------------------------------------------------------------------
 # Requirements:
-#	User will need jq installed in order to run the game.
+#	sudo apt install jq
+#	sudo apt install curl
 # -------------------------------------------------------------------------------
 # Application Components:
 #	Week Files:
