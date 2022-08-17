@@ -146,10 +146,13 @@ test(){
                 if [[ $ans == ${a1,,} ]]
                     then
                         echo "Correct! Keep it up!"
+                        echo
                         qRight=$(( $qRight + 1 ))
                         qNum=$(( $qNum + 1 ))
                     else   
                         echo "Sorry but that answer is incorrect"
+                        echo "The correct answer is $a1"
+                        echo
                         qNum=$(( $qNum + 1 ))
                 fi
             ;;
@@ -160,10 +163,13 @@ test(){
                 if [[ $ans == ${a2,,} ]]
                     then
                         echo "Correct! Keep it up!"
+                        echo
                         qRight=$(( $qRight + 1 ))
                         qNum=$(( $qNum + 1 ))
                     else   
                         echo "Sorry but that answer is incorrect"
+                        echo "The correct answer is $a2"
+                        echo
                         qNum=$(( $qNum + 1 ))
                 fi
             ;;
@@ -174,10 +180,13 @@ test(){
                 if [[ $ans == ${a3,,} ]]
                     then
                         echo "Correct! Keep it up!"
+                        echo
                         qRight=$(( $qRight + 1 ))
                         qNum=$(( $qNum + 1 ))
                     else   
                         echo "Sorry but that answer is incorrect"
+                        echo "The correct answer is $a3"
+                        echo
                         qNum=$(( $qNum + 1 ))
                 fi
             ;;
@@ -203,7 +212,8 @@ test(){
         else
             echo "Congratulations on graduating KuraLabs. We hope you stay in touch."
             echo "Goodbye!"
-            sleep 1s
+            sleep 3s
+            gnome-terminal -- curl parrot.live
         fi
     fi
     qRight=0
