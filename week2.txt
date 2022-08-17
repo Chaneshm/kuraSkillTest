@@ -7,4 +7,4 @@ What command checks if you have any updates? @sudo apt update
 If an IP address starts with 10, is it private or public? @private
 What does a loopback IP address begin with? @127
 What is your default gateway? @Router
-What command shows you all of the processes running on your system? @ps-e
+What command shows you all of the processes running on your system? @ps -e
