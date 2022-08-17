@@ -33,3 +33,5 @@
 # 4. Repeat #3 for each stage [week1, week2, week3]
 # 5. Celebrate the user if they successfully graduate Kura Cohort 3
 # 	- record their name in the "winners" file
+
+echo "it seems like I needed to add a non-comment line to commit"
