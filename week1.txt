@@ -1,6 +1,6 @@
 What is the main issue when adding more Virtual Machines to a bare metal machine? @Resource Contention
-What helps solve the configuration drift problem? @Containers 
-What does URL stand for? @Uniform Resource Locator 
+What helps solve the configuration drift problem? @Containers
+What does URL stand for? @Uniform Resource Locator
 Which server stores data for fast retrieval? @Database Server
 Does vertical scaling signify more machines or more resources? @More Resources
 Who created Linux? @Linus Torvalds
