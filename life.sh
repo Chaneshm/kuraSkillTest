@@ -41,4 +41,37 @@ echo "it seems like I needed to add a non-comment line to commit"
 
 echo test
 
+#The following function 
+function questions {
 
+if "week = 1";
+then shuf -n 3 week1.txt;
+q1=(cut -d'$$$$' -f1| {print $1;exit});
+a1=(cut -d'$$$$' -f2| {print $1;exit});
+q2=(cut -d'$$$$' -f1| {print $2;exit});
+a2=(cut -d'$$$$' -f2| {print $2;exit});
+q3=(cut -d'$$$$' -f1| {print $3;exit});
+a3=(cut -d'$$$$' -f2| {print $3;exit});
+fi
+
+if "week = 2";
+then shuf -n 3 week2.txt;
+q1=(cut -d'$$$$' -f1| {print $1;exit});
+a1=(cut -d'$$$$' -f2| {print $1;exit});
+q2=(cut -d'$$$$' -f1| {print $2;exit});
+a2=(cut -d'$$$$' -f2| {print $2;exit});
+q3=(cut -d'$$$$' -f1| {print $3;exit});
+a3=(cut -d'$$$$' -f2| {print $3;exit});
+fi
+
+if "week = 3";
+then shuf -n 3 week3.txt;
+q1=(cut -d'$$$$' -f1| {print $1;exit});
+a1=(cut -d'$$$$' -f2| {print $1;exit});
+q2=(cut -d'$$$$' -f1| {print $2;exit});
+a2=(cut -d'$$$$' -f2| {print $2;exit});
+q3=(cut -d'$$$$' -f1| {print $3;exit});
+a3=(cut -d'$$$$' -f2| {print $3;exit});
+fi
+
+;}
