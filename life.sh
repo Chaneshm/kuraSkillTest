@@ -140,7 +140,7 @@ test(){
     do
         case $qNum in 
             1) echo $q1
-                echo $a1
+                # echo $a1
                 read ans
                 ans=${ans,,}
                 if [[ $ans == ${a1,,} ]]
@@ -154,7 +154,7 @@ test(){
                 fi
             ;;
             2) echo $q2
-                echo $a2
+                # echo $a2
                 read ans
                 ans=${ans,,}
                 if [[ $ans == ${a2,,} ]]
@@ -168,7 +168,7 @@ test(){
                 fi
             ;;
             3) echo $q3
-                echo $a3
+                # echo $a3
                 read ans
                 ans=${ans,,}
                 if [[ $ans == ${a3,,} ]]
