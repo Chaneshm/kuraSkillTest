@@ -10,12 +10,15 @@
 # Objective: 
 #	In this project, you will be able to test your Kura Labs knowledge gained. 
 #	Run through a 3 week Kura Labs gauntlet if you dare!
-# -------------------------------------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Requirements:
+#	User will need jq installed in order to run the game.
+# -------------------------------------------------------------------------------
 # Application Components:
 #	Week Files:
 #		There are 3 "week" files containing question/answer pairs
 #	JSON User Data Files:
-#		A collection of files to store user data as they pass each stage 
+#		A collection of files to store user data as they pass each stage.
 #	Week File Parser:
 #		A function to parse the quesion/answer library of files. It is used when prompting the user
 #	User State Recorder:
