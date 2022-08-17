@@ -47,6 +47,7 @@ a1=""
 a2=""
 a3=""
 
+source ./test.sh
 #The following function will provide 3 unique random questions and their respective answers from a file of questions based on week level
 
 
@@ -131,7 +132,7 @@ test(){
     pDiff
     clear
     qNum=1
-    # questions
+    questions
     echo "Welcome to KuraLabs week $userLevel diagnostic test"
     echo "I hope you studied!"
     sleep 2s
@@ -139,9 +140,10 @@ test(){
     do
         case $qNum in 
             1) echo $q1
+                echo $a1
                 read ans
                 ans=${ans,,}
-                if [[ $ans == $a1 ]]
+                if [[ $ans == ${a1,,} ]]
                     then
                         echo "Correct! Keep it up!"
                         qRight=$(( $qRight + 1 ))
@@ -152,9 +154,10 @@ test(){
                 fi
             ;;
             2) echo $q2
+                echo $a2
                 read ans
                 ans=${ans,,}
-                if [[ $ans == $a2 ]]
+                if [[ $ans == ${a2,,} ]]
                     then
                         echo "Correct! Keep it up!"
                         qRight=$(( $qRight + 1 ))
@@ -165,9 +168,10 @@ test(){
                 fi
             ;;
             3) echo $q3
+                echo $a3
                 read ans
                 ans=${ans,,}
-                if [[ $ans == $a3 ]]
+                if [[ $ans == ${a3,,} ]]
                     then
                         echo "Correct! Keep it up!"
                         qRight=$(( $qRight + 1 ))
