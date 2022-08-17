@@ -1,11 +1,18 @@
 # KuraLabsSkillsTest [KST]
-# -------------------------------------------------------------------------------------------------------------
+# Version 1.0
+# 8.17.22 
+-------------------------------------------------------------------------------------------------------------
+# Potentional Breaks:
+#	The user cannot insert a name with spaces.
+#	The user cannot insert answers to questions with any extra spaces as it may not match stored answers.
+#	Variables holding questions and answers are not dynamic, the max question and answer count is 3 for each week. Therefore, if additional questions would like to be added you would have to add new variable manually.  
+-----------------------------------------------------------------------------------------
 # Collaborators:
-#	Biki G.
-#	Yariel A.
-#	Nicole N.
-#	Randall D.
-#	Chanesh M.
+#	Biki G. - Leader
+#	Yariel A. - Documenter 
+#	Nicole N. - Documenter
+#	Randall D. - Supervisor
+#	Chanesh M. - Presenter
 # -------------------------------------------------------------------------------------------------------------
 # Objective: 
 #	In this project, you will be able to test your Kura Labs knowledge gained. 
@@ -14,6 +21,7 @@
 # Requirements:
 #	sudo apt install jq
 #	sudo apt install curl
+#	sudo apt install gnome-terminal
 # -------------------------------------------------------------------------------
 # Application Components:
 #	Week Files:
@@ -80,6 +88,5 @@
 # Step 4. Repeat Step #3 for each stage [week1, week2, week3] until the user completes the test or declines to continue.
 #
 # *** Potential Future Add-On ***
-# Celebrate the user if they successfully pass the Kura Skills Test
-# 	- record their name in the "winners" file forever!
+# Record the user's name in the "winners" file forever!
 
