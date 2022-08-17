@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Game Structure written by Chanesh Mahadeo
+# Game Structure & Logic  written by Chanesh Mahadeo
 # -------------------------------------------------------------------------------------------------------------
 # Objective: Run through a 3 week Kura Labs gauntlet
 # Components of application: 
@@ -41,7 +41,7 @@ userLevel=1
 usrDifficulty=0
 
 # Function Name: questions
-# Descriptions: The following function will provide 3 unique random questions and their respetive answers from the week1.txt, week2.txt and week3.txt files created by Yariel Aracena>
+# Descriptions: The following function will provide 3 unique random questions and their respetive answers from the week1.txt, week2.txt and week3.txt files created and formatted by Yariel Aracena>
 # Names: Nicole Navarrete , Randall Da Costa
 
 q1=""
