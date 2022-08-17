@@ -42,3 +42,48 @@ echo "it seems like I needed to add a non-comment line to commit"
 echo test
 
 
+
+
+userName="BikiGurung"
+userLevel=1
+userGameMode="easy"
+userResult="Pass"
+userScore=5
+
+
+file="$userName.json"
+
+# Function Name: recordState
+# Description: This function will create a new file and add the users current info on the game to the file.
+# args: N/A
+# Name: Biki Gurung
+recordState(){
+	# Create a User File for each user
+	touch "$file"
+	# Append User Game Information:
+	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$userGameMode'","result":"'$userResult'","score":"'$userScore'"}'
+	echo $json_data | cat > "$file"
+}
+
+# Function name: readState
+# Description: This function will read the file if it exists and then set the variables for the user.
+# args: N/A
+# Name: Biki Gurung
+readState(){
+	if [ -f "$file" ]
+	then
+		echo "File is found"
+		echo "$file"
+		userLevel=($(jq -r '.level' $file))
+		userGameMode=($(jq -r '.gamemode' $file))
+		userResult=($(jq -r '.result' $file))
+		userScore=($(jq -r '.score' $file))
+
+		echo "$userLevel", "$userGameMode", "$userResult", "$userScore"
+	else
+   		echo "File is not found"
+	fi
+}
+
+recordState
+readState
