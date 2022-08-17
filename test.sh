@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# questions function 
 questions(){
 
 qcount=3
