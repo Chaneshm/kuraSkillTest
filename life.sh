@@ -36,26 +36,17 @@
 # 	- record their name in the "winners" file
 
 echo "it seems like I needed to add a non-comment line to commit"
-=======
 # Creation of logic for the test
-q1="this is a test question"
-q2="this is another test question"
-q3="This is the third question"
-a1="ans1"
-a2="ans2"
-a3="ans3"
-diagnostic=1
 qRight=0
-level=1
+userLevel=1
 echo "What difficulty would you like?"
-read diff
-# if [ $ans -eq $a1 ]
-# then
-#     echo "Correct! Keep it up!"
-#     qRight = ( $qRight + 1 )
-# fi
+echo "1. Beginner"
+echo "2. Intermediate"
+echo "3. Expert"
+read usrDifficulty
+
 pDiff(){
-    case $diff in 
+    case $usrDifficulty in 
         1) required=1
         ;;
         2) required=2
@@ -64,18 +55,16 @@ pDiff(){
         ;;
     esac
 }
-questions(){
-    $1
-}
 
 test(){
     qNum=1
-    questions $level
+    questions
     while [[ $qNum -le 3 ]]
     do
         case $qNum in 
             1) echo $q1
                 read ans
+                ans=${ans,,}
                 if [[ $ans == $a1 ]]
                     then
                         echo "Correct! Keep it up!"
@@ -88,6 +77,7 @@ test(){
             ;;
             2) echo $q2
                 read ans
+                ans=${ans,,}
                 if [[ $ans == $a2 ]]
                     then
                         echo "Correct! Keep it up!"
@@ -100,6 +90,7 @@ test(){
             ;;
             3) echo $q3
                 read ans
+                ans=${ans,,}
                 if [[ $ans == $a3 ]]
                     then
                         echo "Correct! Keep it up!"
@@ -120,7 +111,7 @@ test(){
         echo "Sorry but you failed this test. Better luck next time"
     else
         echo "Congrats you passed the diagnostic!"
-        level=$(( $level + 1 ))
+        userLevel=$(( $userLevel + 1 ))
     fi
 
     sleep 3s
@@ -129,16 +120,15 @@ echo hello
 
 pDiff
 test
-echo test
 
 
 
 
-userName="BikiGurung"
-userLevel=1
-userGameMode="easy"
-userResult="Pass"
-userScore=5
+# userName="BikiGurung"
+# userLevel=1
+# usrDifficulty="easy"
+# userResult="Pass"
+# userScore=5
 
 
 file="$userName.json"
@@ -151,7 +141,7 @@ recordState(){
 	# Create a User File for each user
 	touch "$file"
 	# Append User Game Information:
-	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$userGameMode'","result":"'$userResult'","score":"'$userScore'"}'
+	json_data='{"name":"'$userName'","level":"'$userLevel'","gamemode":"'$usrDifficulty'","result":"'$userResult'","score":"'$userScore'"}'
 	echo $json_data | cat > "$file"
 }
 
@@ -165,11 +155,11 @@ readState(){
 		echo "File is found"
 		echo "$file"
 		userLevel=($(jq -r '.level' $file))
-		userGameMode=($(jq -r '.gamemode' $file))
+		usrDifficulty=($(jq -r '.gamemode' $file))
 		userResult=($(jq -r '.result' $file))
 		userScore=($(jq -r '.score' $file))
 
-		echo "$userLevel", "$userGameMode", "$userResult", "$userScore"
+		echo "$userLevel", "$usrDifficulty", "$userResult", "$userScore"
 	else
    		echo "File is not found"
 	fi
