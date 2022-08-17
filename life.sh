@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # -------------------------------------------------------------------------------------------------------------
 # Objective: Run through a 3 week Kura Labs gauntlet
 # Components of application: 
@@ -35,3 +36,9 @@
 # 	- record their name in the "winners" file
 
 echo "it seems like I needed to add a non-comment line to commit"
+=======
+# Creation of logic for the test
+
+echo test
+
+
