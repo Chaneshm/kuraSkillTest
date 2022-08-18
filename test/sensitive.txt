@@ -1,3 +1,3 @@
-KC, , , 
-MC, , , 
+KC, x, x, x
+MC, x, x, x
 
