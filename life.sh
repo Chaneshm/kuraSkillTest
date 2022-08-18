@@ -217,7 +217,7 @@ test(){
         fi
     fi
     qRight=0
-    sleep 3s
+    sleep 1s
 }
 menu(){
     echo "Welcome to week $userLevel of KuraLabs"
